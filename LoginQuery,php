@@ -1,0 +1,22 @@
+<?php
+echo "Estoy dentro";
+if ($_SERVER['REQUEST_METHOD']=='GET') 
+{
+    require_once("Connection.php");
+    $id = $_GET["usr"];
+    $pass =$_GET["pass"];
+    $query = "SELECT * FROM user WHERE  User= '$id' AND Password = '$pass'";
+    $result = $link ->query($query);
+
+    if ($link -> affected_rows > 0) {
+      echo "Login Succesfull";
+    header('Location: https://francoaldrete.com/Admin/Index.php');
+    exit();
+    }else {
+        
+		echo "Wrong credencials";
+    }
+    $result ->close();
+    $link ->close();
+}
+
