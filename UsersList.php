@@ -28,7 +28,7 @@
       require_once("Connection.php");
       require_once("bootstrap.html");
 
-      $query = "SELECT UID,User,Mail,Role FROM user";
+      $query = "SELECT UID,User,Mail,Role,Password FROM user";
       $result = mysqli_query($link,$query);
       $datos = array();
       if ($result) {
@@ -37,8 +37,9 @@
               $User = $row['User'];
               $Mail = $row['Mail'];
               $Role = $row['Role'];
+              $Pass = $row['Password'];
 
-              $datos[] = array ('UID' => $UID,'User' => $User, 'Mail' => $Mail, 'Role' => $Role);
+              $datos[] = array ('UID' => $UID,'User' => $User, 'Mail' => $Mail, 'Role' => $Role, 'Password' => $Pass);
           }
         }else{
           echo "Error";
@@ -53,7 +54,7 @@
         echo "<td>" . $dato['Role'] . "</td>";
         echo "<td>";
         //echo "<div class='btn-group' role='group' aria-label='Basic example'>";
-        echo "<a href='EditarUsuario.php?id=" . $dato['UID'] . "' class='btn btn-info'>Editar</a>";
+        echo "<a href='EditarUsuario.php?id=" . $dato['Password'] . "' class='btn btn-info'>Editar</a>";
         if($dato['Role'] < 0){
           echo "<a href='ActivarUsuario.php.php?id=" . $dato['UID'] . "' class='btn btn-success'>Activar</a>";
         }else{

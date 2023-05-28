@@ -18,9 +18,9 @@
       // Supongamos que los usuarios se almacenan en un array llamado $usuarios
       require_once("Connection.php");
       require_once("bootstrap.html");
-      $uid = $_GET['id'];
+      $Code = $_GET['Code'];
 
-      $query = "SELECT UID,User,Mail,Role FROM user WHERE UID = " . $uid;
+      $query = "SELECT UID, User, Mail, Role FROM user WHERE Password = '" . $Code . "'";
       $result = mysqli_query($link,$query);
       $datos = array();
       if ($result) {
@@ -48,6 +48,7 @@
         <input type="email" class="form-control" id="mail" name="mail" placeholder="Correo electrónico" value="<?php echo $datos['Mail']; ?>">
       </div>
       <button type="submit" class="btn btn-primary">Guardar</button>
+      <input type="hidden" name="code" value="<?php echo $Code; ?>">
     </form>
   </div>
 
